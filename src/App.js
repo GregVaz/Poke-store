@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import PokemonList from './PokemonList'
 import Paginator from './Paginator'
+import PokemonDetails from './PokemonDetails'
 import axios from 'axios'
 import './App.css'
 
+
 function App() {
-  const [pokemon, setPokemon] = useState([])
-  const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon/')
+  const endpoint = 'https://pokeapi.co/api/v2/pokemon/'
+  const [pokemons, setPokemons] = useState([])
+  const [currentPageUrl, setCurrentPageUrl] = useState(endpoint)
   const [nextPageUrl, setNextPageUrl] = useState()
   const [prevPageUrl, setPrevPageUrl] = useState()
   const [loading, setLoading] = useState(true)
+
+  const [pokemon, setPokemon] = useState('')
+  const [pokemonDetails, setPokemonDetails] = useState([])
+  const [detailsPokemonUrl, setDetailsPokemonUrl] = useState(endpoint + '1')
   
   useEffect(() => {
     setLoading(true);
@@ -20,11 +27,23 @@ function App() {
       setLoading(false);
       setNextPageUrl(res.data.next)
       setPrevPageUrl(res.data.previous)
-      setPokemon(res.data.results)
+      setPokemons(res.data.results)
     })
 
     return () => cancel()
   }, [currentPageUrl])
+
+  useEffect(() => {
+    let cancel
+    axios.get(detailsPokemonUrl, {
+      cancelToken: new axios.CancelToken(c => cancel = c) 
+    }).then( res => {
+      setPokemonDetails(res.data.stats)
+      setPokemon(res.data.name)
+    })
+
+    return () => cancel()
+  }, [detailsPokemonUrl])
 
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl)
@@ -34,13 +53,22 @@ function App() {
     setCurrentPageUrl(prevPageUrl)
   }
 
+  function gotoDetailsPage(pokemonId) {
+    setDetailsPokemonUrl(pokemonId)
+  }
+
   if (loading) return 'Loading...'
   
   return (
     <>
-      <div className="pokemonDetails">
+      <div className="pokemon-details">
         <PokemonList
-          pokemon={pokemon}
+          pokemon={pokemons}
+          gotoDetailsPage={(pokemonId) => gotoDetailsPage(pokemonId)}
+        />
+        <PokemonDetails
+          pokemonDetails={pokemonDetails}
+          pokemonName={pokemon}
         />
       </div>
       <Paginator 

@@ -1,8 +1,9 @@
 import React from 'react'
 
-export default function PokemonDetails({ pokemonDetails }) {
+export default function PokemonDetails({ pokemonDetails, pokemonName }) {
   return (
     <div> 
+      <h4>{pokemonName}</h4>
       {pokemonDetails.map(detail => (
         <div key={detail.stat.name}>
           <h6>{detail.stat.name}</h6>

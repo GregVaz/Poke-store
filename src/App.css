@@ -1,4 +1,19 @@
-.pokemonDetails {
+.pokemon-list {
+  width: 65vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pokemon-item {
+  height: 6rem;
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemon-details {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
