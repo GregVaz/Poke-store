@@ -1,12 +1,14 @@
 import React from 'react'
 
-export default function PokemonList({ pokemon, gotoDetailsPage }) {
+export default function PokemonList({ pokemons, gotoDetailsPage, addPokemonToCart}) {
   return (
     <div className="pokemon-list"> 
-      {pokemon.map(poke => (
-        <div key={poke.name} className="pokemon-item">
-          <span>{poke.name}</span>
-          <button onClick={() => gotoDetailsPage(poke.url)}>See details</button>
+      {pokemons.map(pokemon => (
+        <div key={pokemon.name} className="pokemon-item">
+          <span>{pokemon.name}</span>
+          <span>Price: ${pokemon.id}</span>
+          <button onClick={() => gotoDetailsPage(pokemon.url)}>See details</button>
+          <button onClick={() => addPokemonToCart(pokemon)}>Add to cart</button>
         </div>
       ))}
     </div>

@@ -1,5 +1,11 @@
+.pokemon-page {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .pokemon-list {
-  width: 65vw;
+  width: 75%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -13,7 +19,15 @@
 }
 
 .pokemon-details {
+  width: 20%;
+}
+
+.pokemon-cart {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pokemon-cart-item {
+  width: 8rem;
+  height: 5rem;
 }

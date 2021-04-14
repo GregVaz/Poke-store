@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function PokemonDetails({ pokemonDetails, pokemonName }) {
   return (
-    <div> 
+    <div className="pokemon-details"> 
       <h4>{pokemonName}</h4>
       {pokemonDetails.map(detail => (
         <div key={detail.stat.name}>
