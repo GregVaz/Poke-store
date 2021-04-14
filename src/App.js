@@ -4,8 +4,10 @@ import Paginator from './Paginator'
 import PokemonDetails from './PokemonDetails'
 import PokemonCart from './PokemonCart'
 import axios from 'axios'
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
 import './App.css'
-
+import SplitForm from './components/SplitForm';
 
 function App() {
   const endpoint = 'https://pokeapi.co/api/v2/pokemon/'
@@ -20,6 +22,7 @@ function App() {
   const [detailsPokemonUrl, setDetailsPokemonUrl] = useState()
 
   const [cart, setCart] = useState([])
+  const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
   useEffect(() => {
     setLoading(true);
@@ -89,6 +92,11 @@ function App() {
     setPokemons([...pokemons, pokemon]);
   }
 
+  function cleanCart() {
+    setPokemons([...pokemons, ...cart])
+    setCart([])
+  }
+
   if (loading) return 'Loading...'
   
   return (
@@ -108,6 +116,12 @@ function App() {
         cart={cart}
         removePokemonFromCart={(pokemon) => removePokemonFromCart(pokemon)}
       />
+      <Elements stripe={stripePromise}>
+        <SplitForm
+          cart={cart}
+          cleanCart={() => cleanCart()}
+        /> 
+      </Elements>
       <Paginator 
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
