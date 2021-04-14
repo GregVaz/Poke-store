@@ -17,7 +17,7 @@ function App() {
 
   const [pokemon, setPokemon] = useState('')
   const [pokemonDetails, setPokemonDetails] = useState([])
-  const [detailsPokemonUrl, setDetailsPokemonUrl] = useState(endpoint + '1')
+  const [detailsPokemonUrl, setDetailsPokemonUrl] = useState()
 
   const [cart, setCart] = useState([])
 
@@ -30,7 +30,12 @@ function App() {
       setLoading(false);
       setNextPageUrl(res.data.next)
       setPrevPageUrl(res.data.previous)
-      setPokemons(res.data.results.map(castPokemons))
+      let resPokemons = res.data.results.map(castPokemons)
+      resPokemons = resPokemons.filter(pokemon => cart.every(poke => poke.id !== pokemon.id))
+      setPokemons(resPokemons)
+      if (resPokemons.length > 0) {
+        setDetailsPokemonUrl(endpoint + resPokemons[0].id)
+      }
     })
 
     return () => cancel()
