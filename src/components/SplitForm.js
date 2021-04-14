@@ -71,6 +71,9 @@ export default function SplitForm({cart, cleanCart}) {
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
+    } if (cart.length === 0) {
+      setError('You do not have items on your cart')
+      setProcessing(false);
     } else {
       setPurchase(cart);
       setError(null);
@@ -84,6 +87,7 @@ export default function SplitForm({cart, cleanCart}) {
     <form id="payment-form" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
       <button
+        className="btn btn-success btn-block"
         disabled={processing || disabled || succeeded}
         id="submit"
       >
@@ -104,7 +108,7 @@ export default function SplitForm({cart, cleanCart}) {
       {/* Show a success message upon completion */}
       <div className={succeeded ? "result-message" : "result-message hidden"}>
         <p>Payment succeeded, see the result for your purchase</p>
-        <p>Pokemons you buy: {purchase.map(p => p.name).join(', ')}</p>
+        <p>Congratulations, these are your pokemons: {purchase.map(p => p.name).join(', ')}</p>
         <p>Total: ${purchase.reduce((total, pokemon) => total + parseInt(pokemon.id), 0)}</p>
         <p>Refresh the page to pay again.</p>
       </div>

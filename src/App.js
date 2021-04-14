@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+// import PokemonCard from './PokemonCard'
 import PokemonList from './PokemonList'
 import Paginator from './Paginator'
 import PokemonDetails from './PokemonDetails'
@@ -100,33 +101,36 @@ function App() {
   if (loading) return 'Loading...'
   
   return (
-    <>
+    <div className="container my-5">
       <div className="pokemon-page">
         <PokemonList
           pokemons={pokemons}
           gotoDetailsPage={(pokemonId) => gotoDetailsPage(pokemonId)}
           addPokemonToCart={(pokemon) => addPokemonToCart(pokemon)}
         />
-        <PokemonDetails
-          pokemonDetails={pokemonDetails}
-          pokemonName={pokemon}
-        />
+        <div> 
+          <PokemonDetails
+            pokemonDetails={pokemonDetails}
+            pokemonName={pokemon}
+          />
+          
+          <PokemonCart
+            cart={cart}
+            removePokemonFromCart={(pokemon) => removePokemonFromCart(pokemon)}
+          />
+          <Elements stripe={stripePromise}>
+            <SplitForm
+              cart={cart}
+              cleanCart={() => cleanCart()}
+            /> 
+          </Elements>
+          <Paginator 
+            gotoNextPage={nextPageUrl ? gotoNextPage : null}
+            gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+          />
+        </div>
       </div>
-      <PokemonCart
-        cart={cart}
-        removePokemonFromCart={(pokemon) => removePokemonFromCart(pokemon)}
-      />
-      <Elements stripe={stripePromise}>
-        <SplitForm
-          cart={cart}
-          cleanCart={() => cleanCart()}
-        /> 
-      </Elements>
-      <Paginator 
-        gotoNextPage={nextPageUrl ? gotoNextPage : null}
-        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-      />
-    </>
+    </div>
   );
 }
 
