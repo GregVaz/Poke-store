@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-// import PokemonCard from './PokemonCard'
-import PokemonList from './PokemonList'
-import Paginator from './Paginator'
-import PokemonDetails from './PokemonDetails'
-import PokemonCart from './PokemonCart'
+import PokemonList from './components/PokemonList'
+import Paginator from './components/Paginator'
+import PokemonDetails from './components/PokemonDetails'
+import PokemonCart from './components/PokemonCart'
+import Toolbar from './components/Toolbar';
 import axios from 'axios'
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
 import './App.css'
 import SplitForm from './components/SplitForm';
-import Toolbar from './Toolbar';
 
 function App() {
   const endpoint = 'https://pokeapi.co/api/v2/pokemon/'
