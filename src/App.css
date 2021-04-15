@@ -9,6 +9,11 @@
   width: 100%;
 }
 
+.pokemon-elements-details {
+  position: relative;
+  width: 100%;
+}
+
 .pokemon-list-container {
   position: relative;
   height: 550px;
@@ -113,11 +118,17 @@ input:focus,
   .paginator {
     top: -60px;
   }
+  .pokemon-elements-details {
+    margin-top: 20px;
+  }
 }
 
 @media only screen and (min-width: 800px) {
   .pokemon-elements {
     width: 60%;
+  }
+  .pokemon-elements-details {
+    width: 35%;
   }
   .paginator {
     bottom: -30px;

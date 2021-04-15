@@ -120,7 +120,7 @@ function App() {
               gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
             />
           </div>
-          <div> 
+          <div className="pokemon-elements-details"> 
             <PokemonDetails
               pokemonDetails={pokemonDetails}
               pokemonName={pokemon}
