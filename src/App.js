@@ -67,7 +67,7 @@ function App() {
     return {
       name: pokemon.name,
       url: pokemon.url,
-      id: pokemon.url.match(/\d{1,4}/g)[1]
+      price: parseInt(pokemon.url.match(/\d{1,4}/g)[1])
     }
   }
 

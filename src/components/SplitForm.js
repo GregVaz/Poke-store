@@ -81,7 +81,7 @@ export default function SplitForm({cart, cleanCart}) {
       <div className={succeeded ? "result-message" : "result-message hidden"}>
         <p>Payment succeeded, see the result for your purchase</p>
         <p>Congratulations, these are your pokemons: {purchase.map(p => p.name).join(', ')}</p>
-        <p>Total: ${purchase.reduce((total, pokemon) => total + parseInt(pokemon.id), 0)}</p>
+        <p>Total: ${purchase.reduce((total, pokemon) => total + pokemon.price, 0)}</p>
         <p>Refresh the page to pay again.</p>
       </div>
     </form>

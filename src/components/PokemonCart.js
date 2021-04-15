@@ -4,7 +4,7 @@ export default function PokemonCart({ cart, removePokemonFromCart }) {
   return (
     <>
       <h4>Pokemon Cart</h4>
-      <p>Total: ${cart.reduce((total, pokemon) => total + parseInt(pokemon.id), 0)}</p>
+      <p>Total: ${cart.reduce((total, pokemon) => total + pokemon.price, 0)}</p>
       <button className="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#cartPokemon" aria-expanded="false" aria-controls="cartPokemon">
     List of pokemons in cart
   </button>
