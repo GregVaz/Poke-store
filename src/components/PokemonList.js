@@ -19,8 +19,8 @@ export default function PokemonList({ pokemons, gotoDetailsPage, addPokemonToCar
             <td>{pokemon.name}</td>
             <td>Price: ${pokemon.id}</td>
             <td>
-              <button className="btn btn-info btn-sm" onClick={() => gotoDetailsPage(pokemon.url)}>See details</button>
-              <button className="btn btn-primary btn-sm" onClick={() => addPokemonToCart(pokemon)}>Add to cart</button>
+              <button className="btn btn-info btn-sm" id={pokemon.name+'-details'} onClick={() => gotoDetailsPage(pokemon.url)}>See details</button>
+              <button className="btn btn-primary btn-sm" id={pokemon.name+'-cart'} onClick={() => addPokemonToCart(pokemon)}>Add to cart</button>
             </td>  
           </tr>
         ))}

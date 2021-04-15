@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, getByTestId } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import axiosMock from 'axios';
 import App from './App';
