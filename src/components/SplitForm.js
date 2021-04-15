@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   CardElement,
-  useStripe,
-  useElements
 } from "@stripe/react-stripe-js";
 import './SplitForm.css';
 
@@ -11,28 +9,8 @@ export default function SplitForm({cart, cleanCart}) {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState('');
-  const stripe = useStripe();
-  const elements = useElements();
+  const [complete, setComplete] = useState(false);
   const [purchase, setPurchase] = useState([]);
-
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({items: []})
-      })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setClientSecret(data.clientSecret);
-      });
-  }, []);
 
   const cardStyle = {
     style: {
@@ -57,21 +35,15 @@ export default function SplitForm({cart, cleanCart}) {
     // and display any errors as the customer types their card details
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
+    setComplete(event.complete);
   };
 
   const handleSubmit = async ev => {
     ev.preventDefault();
     setProcessing(true);
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement)
-      }
-    });
-
-    if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
-    } if (cart.length === 0) {
+    if (!complete) {
+      setProcessing(false)
+    } else if (cart.length === 0) {
       setError('You do not have items on your cart')
       setProcessing(false);
     } else {

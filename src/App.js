@@ -23,7 +23,7 @@ function App() {
   const [detailsPokemonUrl, setDetailsPokemonUrl] = useState()
 
   const [cart, setCart] = useState([])
-  const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+  const stripePromise = loadStripe(process.env.REACT_APP_TEST_KEY)
 
   useEffect(() => {
     setLoading(true);
