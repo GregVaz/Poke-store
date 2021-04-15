@@ -4,6 +4,17 @@
   flex-wrap: wrap;
 }
 
+.pokemon-elements {
+  position: relative;
+  width: 100%;
+}
+
+.pokemon-list-container {
+  position: relative;
+  height: 550px;
+  overflow: auto;
+}
+
 .pokemon-list {
   width: 100%;
 }
@@ -37,6 +48,13 @@
   height: 5rem;
   padding: 5px;
   margin: 5px;
+}
+
+.paginator {
+  width: 200px;
+  height: 30px;
+  position: absolute;
+  right: 0px;
 }
 
 label {
@@ -91,9 +109,18 @@ input:focus,
   height: 40px;
 }
 
+@media only screen and (max-width: 800px) {
+  .paginator {
+    top: -60px;
+  }
+}
+
 @media only screen and (min-width: 800px) {
-  .pokemon-list {
+  .pokemon-elements {
     width: 60%;
+  }
+  .paginator {
+    bottom: -30px;
   }
 }
 

@@ -9,6 +9,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
 import './App.css'
 import SplitForm from './components/SplitForm';
+import Toolbar from './Toolbar';
 
 function App() {
   const endpoint = 'https://pokeapi.co/api/v2/pokemon/'
@@ -101,36 +102,42 @@ function App() {
   if (loading) return 'Loading...'
   
   return (
-    <div className="container my-5">
-      <div className="pokemon-page">
-        <PokemonList
-          pokemons={pokemons}
-          gotoDetailsPage={(pokemonId) => gotoDetailsPage(pokemonId)}
-          addPokemonToCart={(pokemon) => addPokemonToCart(pokemon)}
-        />
-        <div> 
-          <PokemonDetails
-            pokemonDetails={pokemonDetails}
-            pokemonName={pokemon}
-          />
-          
-          <PokemonCart
-            cart={cart}
-            removePokemonFromCart={(pokemon) => removePokemonFromCart(pokemon)}
-          />
-          <Elements stripe={stripePromise}>
-            <SplitForm
+    <>
+      <Toolbar />
+      <div className="container mb-5">
+        <div className="pokemon-page">
+          <div className="pokemon-elements">
+            <PokemonList
+              pokemons={pokemons}
+              gotoDetailsPage={(pokemonId) => gotoDetailsPage(pokemonId)}
+              addPokemonToCart={(pokemon) => addPokemonToCart(pokemon)}
+            />
+            <Paginator 
+              gotoNextPage={nextPageUrl ? gotoNextPage : null}
+              gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+            />
+          </div>
+          <div> 
+            <PokemonDetails
+              pokemonDetails={pokemonDetails}
+              pokemonName={pokemon}
+            />
+            
+            <PokemonCart
               cart={cart}
-              cleanCart={() => cleanCart()}
-            /> 
-          </Elements>
-          <Paginator 
-            gotoNextPage={nextPageUrl ? gotoNextPage : null}
-            gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
-          />
+              removePokemonFromCart={(pokemon) => removePokemonFromCart(pokemon)}
+            />
+            <Elements stripe={stripePromise}>
+              <SplitForm
+                cart={cart}
+                cleanCart={() => cleanCart()}
+              /> 
+            </Elements>
+            
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
