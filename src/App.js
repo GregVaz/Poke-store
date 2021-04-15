@@ -11,7 +11,7 @@ import './App.css'
 import SplitForm from './components/SplitForm';
 
 function App() {
-  const endpoint = 'https://pokeapi.co/api/v2/pokemon/'
+  const endpoint = process.env.REACT_APP_ENDPOINT 
   const [pokemons, setPokemons] = useState([])
   const [currentPageUrl, setCurrentPageUrl] = useState(endpoint)
   const [nextPageUrl, setNextPageUrl] = useState()
@@ -58,7 +58,9 @@ function App() {
 
       return () => cancel()
     }
-    fetchData()
+    if (detailsPokemonUrl) {
+      fetchData()
+    }
   }, [detailsPokemonUrl])
 
   function castPokemons(pokemon) {
