@@ -26,35 +26,39 @@ function App() {
   const stripePromise = loadStripe(process.env.REACT_APP_TEST_KEY)
 
   useEffect(() => {
-    setLoading(true);
-    let cancel
-    axios.get(currentPageUrl, {
-      cancelToken: new axios.CancelToken(c => cancel = c) 
-    }).then( res => {
+    async function fetchData() {
+      setLoading(true);
+      let cancel
+      const response = await axios.get(currentPageUrl, {
+        cancelToken: new axios.CancelToken(c => cancel = c) 
+      });
       setLoading(false);
-      setNextPageUrl(res.data.next)
-      setPrevPageUrl(res.data.previous)
-      let resPokemons = res.data.results.map(castPokemons)
+      setNextPageUrl(response.data.next)
+      setPrevPageUrl(response.data.previous)
+      let resPokemons = response.data.results.map(castPokemons)
       resPokemons = resPokemons.filter(pokemon => cart.every(poke => poke.id !== pokemon.id))
       setPokemons(resPokemons)
       if (resPokemons.length > 0) {
         setDetailsPokemonUrl(endpoint + resPokemons[0].id)
       }
-    })
-
-    return () => cancel()
+      return () => cancel()
+    }
+    fetchData()
   }, [currentPageUrl])
 
   useEffect(() => {
-    let cancel
-    axios.get(detailsPokemonUrl, {
-      cancelToken: new axios.CancelToken(c => cancel = c) 
-    }).then( res => {
-      setPokemonDetails(res.data.stats)
-      setPokemon(res.data.name)
-    })
+    async function fetchData() {
+      let cancel
+      const response = await axios.get(detailsPokemonUrl, {
+        cancelToken: new axios.CancelToken(c => cancel = c) 
+      });
+      
+      setPokemonDetails(response.data.stats)
+      setPokemon(response.data.name)
 
-    return () => cancel()
+      return () => cancel()
+    }
+    fetchData()
   }, [detailsPokemonUrl])
 
   function castPokemons(pokemon) {
