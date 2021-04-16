@@ -1,10 +1,11 @@
 import React from 'react'
 
 export default function PokemonCart({ cart, removePokemonFromCart }) {
+  const total = cart.reduce((total, pokemon) => total + pokemon.price, 0)
   return (
     <>
       <h4>Pokemon Cart</h4>
-      <p>Total: ${cart.reduce((total, pokemon) => total + pokemon.price, 0)}</p>
+      <p>Total: ${total}</p>
       <button className="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#cartPokemon" aria-expanded="false" aria-controls="cartPokemon">
     List of pokemons in cart
   </button>
