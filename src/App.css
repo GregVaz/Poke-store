@@ -1,38 +1,137 @@
-.App {
-  text-align: center;
+.pokemon-page {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pokemon-elements {
+  position: relative;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.pokemon-elements-details {
+  position: relative;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokemon-list-container {
+  position: relative;
+  height: 550px;
+  overflow: auto;
+}
+
+.pokemon-list {
+  width: 100%;
+}
+
+.pokemon-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.pokemon-card-item {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  width: 10rem;
+}
+
+.pokemon-details {
+  position: relative;
+}
+
+.pokemon-cart {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.pokemon-cart-item {
+  width: 10rem;
+  height: 5rem;
+  padding: 5px;
+  margin: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.paginator {
+  width: 200px;
+  height: 30px;
+  position: absolute;
+  right: 0px;
+}
+
+label {
+  color: #6b7c93;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+}
+
+button:hover {
+  color: #fff;
+  cursor: pointer;
+  background-color: #7795f8;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+input,
+.StripeElement {
+  display: block;
+  margin: 10px 0 20px 0;
+  max-width: 500px;
+  padding: 10px 14px;
+  font-size: 1em;
+  font-family: "Source Code Pro", monospace;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+  background: white;
+}
+
+input::placeholder {
+  color: #aab7c4;
+}
+
+input:focus,
+.StripeElement--focus {
+  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
+    rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.StripeElement.IdealBankElement,
+.StripeElement.FpxBankElement,
+.StripeElement.PaymentRequestButton {
+  padding: 0;
+}
+
+.StripeElement.PaymentRequestButton {
+  height: 40px;
+}
+
+@media only screen and (max-width: 800px) {
+  .paginator {
+    top: -60px;
   }
-  to {
-    transform: rotate(360deg);
+  .pokemon-elements-details {
+    margin-top: 20px;
   }
 }
+
+@media only screen and (min-width: 800px) {
+  .pokemon-elements {
+    width: 60%;
+  }
+  .pokemon-elements-details {
+    width: 35%;
+  }
+  .paginator {
+    bottom: -30px;
+  }
+}
+
