@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/poke-store/static/css/main.74acd4da.chunk.css",
-    "main.js": "/poke-store/static/js/main.fb9d4e3a.chunk.js",
-    "main.js.map": "/poke-store/static/js/main.fb9d4e3a.chunk.js.map",
+    "main.js": "/poke-store/static/js/main.f25ead26.chunk.js",
+    "main.js.map": "/poke-store/static/js/main.f25ead26.chunk.js.map",
     "runtime-main.js": "/poke-store/static/js/runtime-main.2c6c1835.js",
     "runtime-main.js.map": "/poke-store/static/js/runtime-main.2c6c1835.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/poke-store/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.203bb3a1.chunk.js": "/poke-store/static/js/2.203bb3a1.chunk.js",
-    "static/js/2.203bb3a1.chunk.js.map": "/poke-store/static/js/2.203bb3a1.chunk.js.map",
+    "static/js/2.f30c2c3d.chunk.js": "/poke-store/static/js/2.f30c2c3d.chunk.js",
+    "static/js/2.f30c2c3d.chunk.js.map": "/poke-store/static/js/2.f30c2c3d.chunk.js.map",
     "index.html": "/poke-store/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/poke-store/static/css/2.4c97ca4f.chunk.css.map",
     "static/css/main.74acd4da.chunk.css.map": "/poke-store/static/css/main.74acd4da.chunk.css.map",
-    "static/js/2.203bb3a1.chunk.js.LICENSE.txt": "/poke-store/static/js/2.203bb3a1.chunk.js.LICENSE.txt"
+    "static/js/2.f30c2c3d.chunk.js.LICENSE.txt": "/poke-store/static/js/2.f30c2c3d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2c6c1835.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.203bb3a1.chunk.js",
+    "static/js/2.f30c2c3d.chunk.js",
     "static/css/main.74acd4da.chunk.css",
-    "static/js/main.fb9d4e3a.chunk.js"
+    "static/js/main.f25ead26.chunk.js"
   ]
 }
